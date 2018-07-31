@@ -6,8 +6,8 @@ function getTypeByBankId($id)
 {
     $cmd = "SELECT *" .
             " FROM type" .
-            " WHERE user_id = " . $id;
-    
+            " WHERE bank_id = " . $id;
+
     $db = new SQL_Connect();
     $db->connect("Vincent_Bank");
     $answer = $db->ask($cmd);

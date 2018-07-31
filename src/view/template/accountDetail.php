@@ -15,7 +15,7 @@
             $i += 1;
         }
         echo "<br>";
-        
+
         if ($user->_operations == NULL)
                     echo "Vous n'avez pas encore d'opérations sur ce compte.";
         else
@@ -23,7 +23,11 @@
             echo "<table>";
             echo "    <thead>";
             echo "        <tr>";
-            echo "            <th>Compte</th>";
+            echo "            <th>Date</th>";
+            echo "            <th>Categorie</th>";
+            echo "            <th>Nom</th>";
+            echo "            <th>Prix</th>";
+            echo "            <th>Type</th>";
             echo "        </tr>";
             echo "    </thead>";
             echo "    <tbody>";
@@ -32,7 +36,11 @@
             while ($i < count($user->_operations))
             {
                 echo "<tr>";
+                echo "<td>" . $user->_operations[$i]['date'] . "</td>";
+                echo "<td>" . $user->categoryIdToString($user->_operations[$i]['category_id']) . "</td>";
                 echo "<td>" . $user->_operations[$i]['name'] . "</td>";
+                echo "<td>" . ($user->_operations[$i]['count'] / 100) . "</td>";
+                echo "<td>" . $user->typeIdToString($user->_operations[$i]['type_id']) . "</td>";
                 echo "</tr>";
 
                 $i += 1;

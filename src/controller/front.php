@@ -19,7 +19,7 @@ function frontController($get)
             if (ISSET($get['account']))
             {
                 $user->selectAccount($get['account']);
-                
+
                 if ($user->_error == NULL)
                     viewAccountDetail($user);
                 else
