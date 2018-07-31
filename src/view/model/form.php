@@ -1,9 +1,9 @@
 <?php
 
-function viewHost($user)
+function viewForm($user)
 {
     // Definition of page's tittle
-    $title = "Bank Management";
+    $title = "Formulaires";
 
     // Definition of links
         // Host webpage
@@ -20,5 +20,5 @@ function viewHost($user)
                                 $form);
 
     // Show webpage
-    require_once('src/view/template/host.php');
+    require_once('src/view/template/form.php');
 }

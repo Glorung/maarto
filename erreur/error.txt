@@ -1,0 +1,12 @@
+Base de donnes:
+  - Heure pour chaque operation innutile
+  - Montant des operations en Int
+  - Type defini via la banque, impossibilite d'en creer
+
+Gestion:
+  - Gestion du temps
+
+
+Cool:
+  Totalite des donnes gere dans une classe
+  Gestion d'erreur avancee

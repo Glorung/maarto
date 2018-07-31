@@ -6,6 +6,7 @@ require_once('src/model/class/UserAccount.class.php');
 
 // view
 require_once ('src/view/model/host.php');
+require_once ('src/view/model/form.php');
 require_once('src/view/model/accountDetail.php');
 
 function frontController($get)
@@ -25,6 +26,8 @@ function frontController($get)
                 else
                    echo $user->_error;
             }
+            else if (ISSET($get['form']))
+              viewForm($user);
             else
                 viewHost($user);
         }
