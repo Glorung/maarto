@@ -13,11 +13,17 @@ function viewForm($user)
                   // Definition of form
                 $form = array   ("action" => "?user=" . $user->_user['user_id'] .
                                             "&form=1",
-                                            "name" => "Formulaires");
+                                "name" => "Formulaires",
+                                "active" => true);
 
+                $changeAccount = array   ("action" => "",
+                                 "name" => "Changer de compte",
+                                "right" => true);
+                
                 // Set all the webpage's links
                 $links = array  ($host,
-                                $form);
+                                $form,
+                                $changeAccount);
 
     // Show webpage
     require_once('src/view/template/form.php');
