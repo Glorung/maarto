@@ -9,7 +9,7 @@ require_once ('src/view/model/host.php');
 require_once ('src/view/model/form.php');
 require_once('src/view/model/accountDetail.php');
 
-function frontController($get)
+function frontController($get, $post = NULL)
 {
     // if a user is set
     if (ISSET($get['user']))
@@ -28,6 +28,8 @@ function frontController($get)
             }
             else if (ISSET($get['form']))
               viewForm($user);
+            else if (ISSET($get['set']))
+              setController($user, $get, $post);
             else
                 viewHost($user);
         }
@@ -36,4 +38,20 @@ function frontController($get)
     }
     else
         viewLogin();
+}
+
+function setController ($user, $get, $post)
+{
+  var_dump($post);
+
+  $value = $get['set'];
+
+  if ($value == "operation")
+    setOperation($user, $post);
+  else if ($value == "category")
+    setCategory($user, $post);
+  else if ($value == "type")
+    setType($user, $post);
+  else
+    echo "Erreur: Ce formulaire n'est pas reconnu.";
 }

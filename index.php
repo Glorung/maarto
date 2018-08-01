@@ -6,4 +6,9 @@ require_once('src/view/model/login.php');
 if (count($_GET) == 0)
     viewLogin();
 else
-    frontController($_GET);
+  {
+    if (ISSET($_POST['name']))
+      frontController($_GET, $_POST);
+    else
+      frontController($_GET);
+  }
