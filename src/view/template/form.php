@@ -21,7 +21,7 @@
         echo '<form action="index.php?user=' . $user->_user['user_id'] .
         '&set=operation" method="post">';
       ?>
-        <h1>Ajout d\'une operation</h1><br>
+        <h1>Ajout d'une operation</h1><br>
             Compte:
             <select name="account">
                 <optgroup label="Compte visé">
@@ -85,15 +85,19 @@
 
             <br>
 
-            <input type="submit" value="Envoyer">
+            <input type="submit" value="Envoyer"><br>
 
+            <?php
+            if ($user->_error && $user->_errorFrom == "operation")
+                echo $user->_error;
+            ?>
           </form>
 
           <?php
           echo '<form action="index.php?user=' . $user->_user['user_id'] .
           '&set=category" method="post">';
           ?>
-            <h1>Ajout d\'une categorie</h1><br>
+            <h1>Ajout d'une categorie</h1><br>
 
             <input type="text" placeholder="Nom" name="name"> <br>
             <input type="submit" value="Envoyer">
@@ -103,7 +107,7 @@
           echo '<form action="index.php?user=' . $user->_user['user_id'] .
           '&set=type" method="post">';
           ?>
-            <h1>Ajout d\'un type</h1><br>
+            <h1>Ajout d'un type</h1><br>
 
             <input type="text" placeholder="Nom" name="name"> <br>
             <input type="submit" value="Envoyer">

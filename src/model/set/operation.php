@@ -1,5 +1,6 @@
 <?php
 
+require_once 'src/model/check/operation.php';
 
 // Teste si toutes les $values dans $array existe
 function issetArray($array, $values)
@@ -23,63 +24,25 @@ function checkOperation($user, $post)
                     'balance', 'regular', 'account',
                     'category', 'type');
 
+    $user->_errorFrom = "operation";
     if (issetArray($post, $values))
     {
         $post['balance'] = abs($post['balance']);
-
-
-
-        $testedValue = explode("-", $post['date']);
-        if (count($testedValue) == 3 &&
-                strlen($testedValue[0]) == 4 && ((int)$testedValue[0] <= 2018) &&
-                strlen($testedValue[1]) == 2 && ((int)$testedValue[1] <= 12) &&
-                strlen($testedValue[2]) == 2 && ((int)$testedValue[2] <= 31))
-           {
-            $testedValue = strlen($post['name']);
-            if ($testedValue > 3 && $testedValue <= 50)
-            {
-                if ($post['nature'] == "C" || $post['nature'] == "D")
-                {
-                   if (is_int($post['balance']))
-                   {
-                       if ($post['regular'] == "0" || $post['regular'] == "1")
-                       {
-                           if ($post['account'])
-                           {
-                               if($post['category'])
-                               {
-                                   if ($post['type'])
-                                   {
-                                       return (true);
-                                   }
-                                   else 
-                                       $user->_error = "Erreur: Type de paiement invalide.";
-                               }
-                               else
-                                $user->_error = "Erreur: Catégorie non valide.";
-
-                           }
-                           else
-                            $user->_error = "Erreur: Compte en banque inexistant.";
-
-                       }
-                       else
-                        $user->_error = "Erreur[regular]: Formulaire invalide.";
-
-                   }
-                   else
-                    $user->_error = "Erreur: Montant invalide.";                    
-                }
-                else
-                    $user->_error = "Erreur[nature]: Formulaire invalide.";
-            }
-            else
-                $user->_error = "Erreur: Libellé de l'opération invalide.";
-        }
+        
+        if  (checkOperationDate($user, $post['date']) &&
+            checkName($user, $post['name']) &&
+            checkNature($user, $post['nature']) &&
+            checkBalance($user, $post['balance']) &&
+            checkRegular($user, $post['regular']) &&
+            checkAccount($user, $post['account']) &&
+            checkOperationCategory($user, $post['category']) &&
+            checkType($user, $post['type']))
+                return true;
         else
-            $user->_error = "Erreur: Date invalide.";
-        echo $user->_error;
-    return (false);
+        {
+            echo $user->_error;
+            return false;
+        }
     }
     $user->_error = "Errer: Tous les champs ne sont pas rempli.";
     return (false);
@@ -108,13 +71,13 @@ function sendOperation($user, $post)
 }
 
 function setOperation($user, $post)
-{
-    var_dump($post);
-    
+{   
     if (checkOperation($user, $post))
     {
         $user->selectAccount($post['account']);
         if ($user->_error == NULL)
             sendOperation($user, $post);
     }
+    else
+        viewForm($user);
 }

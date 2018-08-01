@@ -3,6 +3,7 @@
 
 function checkBankType($user, $post)
 {
+    $user->_errorFrom = "type";
     return (true);
 }
 

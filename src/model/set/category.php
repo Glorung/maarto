@@ -3,6 +3,7 @@
 
 function checkCategory($user, $post)
 {
+    $user->_errorFrom = "category";
     return (true);
 }
 

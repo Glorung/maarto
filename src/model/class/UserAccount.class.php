@@ -9,7 +9,7 @@ require_once ('src/model/get/operation.php');
 require_once ('src/model/get/type.php');
 require_once ('src/model/get/user.php');
 
-// A SQL implementation
+// User DataBase Implementation
 class UserAccount
 {
 // Attributes
@@ -24,11 +24,13 @@ class UserAccount
     public      $_category;
 
     public      $_error;
+    public      $_errorFrom;
 
 // Construct/Destruct
     public function __construct($userId)
     {
         $this->_error = NULL;
+        $this->_errorFrom = NULL;
 
         // get user data
         $this->_user = getUserById($userId);
