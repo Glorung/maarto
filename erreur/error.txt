@@ -1,11 +1,11 @@
 Base de donnes:
   - Heure pour chaque operation innutile
   - Montant des operations en Int
-  - Type defini via la banque, impossibilite d'en creer
+  - Type defini via la banque, impossibilite d'en creer (sans tricher)
 
 Gestion:
   - Gestion du temps
-
+  - Gestion de son temps libre
 
 Cool:
   Totalite des donnes gere dans une classe

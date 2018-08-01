@@ -17,10 +17,12 @@
         echo "<br>";
         ?>
 
-        <form action="index.php?set=operation" method="post">
-          <h1>Ajout d\'une operation</h1><br>
+        <?php
+        echo '<form action="index.php?user=' . $user->_user['user_id'] .
+        '&set=operation" method="post">';
+      ?>          <h1>Ajout d\'une operation</h1><br>
             Compte:
-            <select name="Idcategorie">
+            <select name="account">
                 <optgroup>
                   <?php
                   $i = 0;
@@ -36,12 +38,13 @@
 
             <br>
 
-            <input type="text" placeholder="Libellé de l'opération" name="libelle"><br>
+            <input type="text" placeholder="Libellé de l'opération" name="name"><br>
             <input type="date" name="date"> <br>
-            <input type="number" step="any" placeholder="Montant de l'opération" name="montant"><br>
+
+            <input type="number" step="any" placeholder="Montant de l'opération" name="balance"><br>
 
             Type:
-            <select name="Idcategorie">
+            <select name="type">
                 <optgroup>
                   <option value="1">Virement</option>
                   <option value="2">Prelevement</option>
@@ -54,7 +57,7 @@
             <br>
 
             Categorie:
-            <select name="Idcategorie">
+            <select name="category">
                 <optgroup>
                   <?php
                   $i = 0;
@@ -75,9 +78,9 @@
             <input type="radio" name="nature" value="D" checked>
             <label for="debit">Débit</label>
 
-            <input type="hidden" value="0" name="fixe">
-            <input type="checkbox" name="fixe" value="1">
-            <label for="fixe">Dépense fixe</label>
+            <input type="hidden" value="0" name="regular">
+            <input type="checkbox" name="regular" value="1">
+            <label for="regular">Dépense fixe</label>
 
             <br>
 
@@ -85,8 +88,20 @@
 
           </form>
 
+          <?php
+          echo '<form action="index.php?user=' . $user->_user['user_id'] .
+          '&set=category" method="post">';
+          ?>
+            <h1>Ajout d\'une categorie</h1><br>
 
-          <form action="index.php?set=category" method="post">
+            <input type="text" placeholder="Nom" name="name"> <br>
+            <input type="submit" value="Envoyer">
+          </form>
+
+          <?php
+          echo '<form action="index.php?user=' . $user->_user['user_id'] .
+          '&set=type" method="post">';
+          ?>
             <h1>Ajout d\'une categorie</h1><br>
 
             <input type="text" placeholder="Nom" name="name"> <br>
