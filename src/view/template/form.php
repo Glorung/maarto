@@ -20,10 +20,11 @@
         <?php
         echo '<form action="index.php?user=' . $user->_user['user_id'] .
         '&set=operation" method="post">';
-      ?>          <h1>Ajout d\'une operation</h1><br>
+      ?>
+        <h1>Ajout d\'une operation</h1><br>
             Compte:
             <select name="account">
-                <optgroup>
+                <optgroup label="Compte visé">
                   <?php
                   $i = 0;
                   while ($i < count($user->_account))
@@ -45,7 +46,7 @@
 
             Type:
             <select name="type">
-                <optgroup>
+                <optgroup label="Type de paiement">
                   <option value="1">Virement</option>
                   <option value="2">Prelevement</option>
                   <option value="3">Carte bancaire</option>
@@ -58,7 +59,7 @@
 
             Categorie:
             <select name="category">
-                <optgroup>
+                <optgroup label="Catégorie">
                   <?php
                   $i = 0;
                   while ($i < count($user->_category))
@@ -102,7 +103,7 @@
           echo '<form action="index.php?user=' . $user->_user['user_id'] .
           '&set=type" method="post">';
           ?>
-            <h1>Ajout d\'une categorie</h1><br>
+            <h1>Ajout d\'un type</h1><br>
 
             <input type="text" placeholder="Nom" name="name"> <br>
             <input type="submit" value="Envoyer">

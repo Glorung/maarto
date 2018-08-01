@@ -1,9 +1,21 @@
 <?php
 
 
-function checkCatyegory($user, $post)
+function checkCategory($user, $post)
 {
+    return (true);
+}
+
+function sendCategory($user, $post)
+{
+    $cmd = "INSERT INTO category (name, user_id)" .
+            " VALUES ('" .
+            $post['name'] . "', '" .
+            $user->_user['user_id'] . "')";
     
+    $db = new SQL_Connect();
+    $db->connect("Vincent_Bank");
+    $db->set($cmd);
 }
 
 function setCategory($user, $post)
@@ -11,7 +23,5 @@ function setCategory($user, $post)
     var_dump($post);
 
     if (checkCategory($user, $post))
-    {
-        
-    }
+        sendCategory($user, $post);
 }

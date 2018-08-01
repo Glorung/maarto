@@ -30,7 +30,7 @@ function sendOperation($user, $post)
 function setOperation($user, $post)
 {
     var_dump($post);
-
+    
     if (checkOperation($user, $post))
     {
         $user->selectAccount($post['account']);
