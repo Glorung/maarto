@@ -20,7 +20,7 @@ function    checkName($user, $name)
         return true;
     else
         $user->_error = "Erreur: Libellé de l'opération invalide.";
-    return false;       
+    return false;
 }
 
 function    checkNature($user, $nature)
@@ -34,10 +34,10 @@ function    checkNature($user, $nature)
 
 function    checkBalance($user, $balance)
 {
-    if (is_float($balance))
+    if (is_int($balance) || is_float($balance))
         return true;
     else
-        $user->_error = "Erreur: Montant invalide.";                    
+        $user->_error = "Erreur: Montant invalide.";
     return false;
 }
 
@@ -46,7 +46,7 @@ function    checkRegular($user, $regular)
     if ($regular == "0" || $regular == "1")
         return true;
     else
-        $user->_error = "Erreur[regular]: Formulaire invalide."; 
+        $user->_error = "Erreur[regular]: Formulaire invalide.";
     return false;
 }
 
@@ -64,7 +64,7 @@ function    checkOperationCategory($user, $category)
     if ($category)
         return true;
     else
-        $user->_error = "Erreur: Catégorie non valide."; 
+        $user->_error = "Erreur: Catégorie non valide.";
     return false;
 }
 

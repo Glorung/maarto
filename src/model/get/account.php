@@ -6,8 +6,9 @@ function getAccountByUserId($id)
 {
     $cmd = "SELECT *" .
             " FROM account" .
-            " WHERE user_id = " . $id;
-    
+            " WHERE user_id = " . $id .
+            " ORDER BY account_id";
+
     $db = new SQL_Connect();
     $db->connect("Vincent_Bank");
     $answer = $db->ask($cmd);
@@ -18,11 +19,11 @@ function getAccountById($id)
 {
     $cmd = "SELECT *" .
             " FROM account" .
-            " WHERE account_id = " . $id;
-    
+            " WHERE account_id = " . $id .
+            " ORDER BY account_id";
+
     $db = new SQL_Connect();
     $db->connect("Vincent_Bank");
     $answer = $db->ask($cmd);
     return ($answer);
 }
-

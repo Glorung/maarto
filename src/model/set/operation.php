@@ -1,13 +1,14 @@
 <?php
 
 require_once 'src/model/check/operation.php';
+require_once 'src/model/modify/account.php';
 
 // Teste si toutes les $values dans $array existe
 function issetArray($array, $values)
 {
     $i = 0;
     $good = true;
-    
+
     // Parcours les valeurs
     while ($good == true && $i < count($values))
     {
@@ -28,7 +29,7 @@ function checkOperation($user, $post)
     if (issetArray($post, $values))
     {
         $post['balance'] = abs($post['balance']);
-        
+
         if  (checkOperationDate($user, $post['date']) &&
             checkName($user, $post['name']) &&
             checkNature($user, $post['nature']) &&
@@ -64,19 +65,22 @@ function sendOperation($user, $post)
                 $post['category'] . "', '" .
                 $post['type'] . "')";
 
-    echo $cmd;
-//   $db = new SQL_Connect();
-//   $db->connect("Vincent_Bank");
-//   $db->set($cmd);
+     $db = new SQL_Connect();
+     $db->connect("Vincent_Bank");
+     $db->set($cmd);
 }
 
 function setOperation($user, $post)
-{   
+{
     if (checkOperation($user, $post))
     {
         $user->selectAccount($post['account']);
         if ($user->_error == NULL)
+        {
+            updateAccount($user, $post);
             sendOperation($user, $post);
+            viewForm($user);
+        }
     }
     else
         viewForm($user);
