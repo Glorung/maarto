@@ -38,8 +38,21 @@ ul.topnav li.right {
     min-width: 100px;
 }
 
+.card {
+  margin: auto;
+  max-width: 1000px;
+}
+
+form {
+  margin-left: 0;
+}
+
+i {
+  color: black;
+}
+
 @media screen and (max-width: 600px)
 {
-    ul.topnav li.right, 
+    ul.topnav li.right,
     ul.topnav li {float: none;}
 }

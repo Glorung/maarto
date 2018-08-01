@@ -2,9 +2,13 @@
 
 require_once 'src/view/template/navBar.php';
 
+echo '<div class="card">';
+
 echo '<form action="index.php?user=' . $user->_user['user_id'] .
                                     '&set=operation" method="post">';
 ?>
+
+
 <h1>Ajout d'une operation</h1><br>
 Compte:
 <select class="form-control" name="account">
@@ -71,22 +75,27 @@ Categorie:
                                             '&set=category" method="post">';
 ?>
 
-<h1>Ajout d'une categorie</h1><br>
+<br>
+<h1>Ajout d'une categorie</h1>
+<br>
 
 <input type="text" placeholder="Nom" name="name"> <br>
 <input type="submit" value="Envoyer">
 </form>
 
 <?php
-    echo '<form action="index.php?user=' .  $user->_user['user_id'] .
-                                            '&set=type" method="post">';
+    echo '<form action="index.php">';
 ?>
 
-<h1>Ajout d'un type</h1><br>
+<br>
+<h1>Ajout d'un type</h1>
+<br>
 
 <input type="text" placeholder="Nom" name="name"> <br>
 <input type="submit" value="Envoyer">
 </form>
+
+</div>
 
 </body>
 </html>

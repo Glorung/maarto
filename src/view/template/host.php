@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 require_once 'src/view/template/navBar.php';
 
 if ($user->_account == NULL)
@@ -29,7 +29,7 @@ else
         echo    "<td>" ."<a href=" .
                         "'index.php?user=" . $user->_user['user_id'] .
                         "&account=" . $user->_account[$i]['account_id'] .
-                        "'>" . "detail_icon" . "</a>" .
+                        "'>" . "<i class='fas fa-align-center'></i>" . "</a>" .
                 "</td>";
 
         echo "</tr>";
