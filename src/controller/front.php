@@ -40,6 +40,12 @@ function frontController($get, $post = NULL)
         viewLogin();
 }
 
+
+// Setters
+require_once ('src/model/set/category.php');
+require_once ('src/model/set/operation.php');
+require_once ('src/model/set/type.php');
+
 function setController ($user, $get, $post)
 {
   var_dump($post);
@@ -51,7 +57,7 @@ function setController ($user, $get, $post)
   else if ($value == "category")
     setCategory($user, $post);
   else if ($value == "type")
-    setType($user, $post);
+    setBankType($user, $post);
   else
     echo "Erreur: Ce formulaire n'est pas reconnu.";
 }
