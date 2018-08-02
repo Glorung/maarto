@@ -4,7 +4,9 @@
 function checkCategory($user, $post)
 {
     $user->_errorFrom = "category";
-    return (true);
+    if (checkName($user, $post['name']))
+        return (true);
+    return false;
 }
 
 function sendCategory($user, $post)
@@ -21,8 +23,9 @@ function sendCategory($user, $post)
 
 function setCategory($user, $post)
 {
-    var_dump($post);
-
+    $post['name'] = htmlentities(trim(strip_tags($post['name'], ENT_NOQUOTES)));
+    
     if (checkCategory($user, $post))
         sendCategory($user, $post);
+    viewForm($user);
 }

@@ -19,13 +19,10 @@ function sendBankType($user, $post)
 
 function setBankType($user, $post)
 {
-    var_dump($post);
-
     if (checkType($user, $post))
     {
-        if ($user->_error == NULL)
-        {
-            sendBankType($user, $post);
-        }
+        $user->_errirFrom = "type";
+        $user->_error = "Error: La fonctionnalité n'est pas encore implémenté.";
+        
     }
 }

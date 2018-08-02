@@ -67,8 +67,14 @@ Categorie:
 <input type="submit" value="Envoyer"><br>
 
 <?php
-    if ($user->_error && $user->_errorFrom == "operation")
-        echo $user->_error;
+    if ($user->_errorFrom == "operation")
+    {
+        echo '<br>';
+        if ($user->_error)
+            echo $user->_error;
+        else
+            echo "Votre demande a bien été prise en compte.";
+    }
     echo "</form>";
 
     echo '<form action="index.php?user=' .  $user->_user['user_id'] .
@@ -84,8 +90,18 @@ Categorie:
 </form>
 
 <?php
-    echo '<form action="index.php">';
+    if ($user->_errorFrom == "category")
+    {
+        echo '<br>';
+        if ($user->_error)
+            echo $user->_error;
+        else
+            echo "Votre demande a bien été prise en compte.";
+    }
+echo '<form action="index.php?user=' . $user->_user['user_id'] .
+                                    '&set=operation" method="post">';
 ?>
+
 
 <br>
 <h1>Ajout d'un type</h1>
@@ -94,6 +110,11 @@ Categorie:
 <input type="text" placeholder="Nom" name="name"> <br>
 <input type="submit" value="Envoyer">
 </form>
+
+<?php
+    if ($user->_error && $user->_errorFrom == "type")
+        echo $user->_error;
+?>
 
 </div>
 

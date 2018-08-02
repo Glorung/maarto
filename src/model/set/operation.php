@@ -72,16 +72,22 @@ function sendOperation($user, $post)
 
 function setOperation($user, $post)
 {
+   $post['date'] = htmlentitie(strim(strip_tags($post['date'], ENT_NOQUOTES)));
+   $post['name'] = htmlentitie(trim(strip_tags($post['name'], ENT_NOQUOTES)));
+   $post['nature'] = htmlentitie(trim(strip_tags($post['nature'], ENT_NOQUOTES)));
+   $post['balance'] = htmlentitie(trim(strip_tags($post['balance'], ENT_NOQUOTES)));
+   $post['regular'] = htmlentitie(trim(strip_tags($post['regular'], ENT_NOQUOTES)));
+   $post['account'] = htmlentitie(trim(strip_tags($post['account'], ENT_NOQUOTES)));
+   $post['category'] = htmlentitie(trim(strip_tags($post['category'], ENT_NOQUOTES)));
+   $post['type'] = htmlentitie(trim(strip_tags($post['type'], ENT_NOQUOTES)));
+
     if (checkOperation($user, $post))
     {
-        $user->selectAccount($post['account']);
         if ($user->_error == NULL)
         {
             updateAccount($user, $post);
             sendOperation($user, $post);
-            viewForm($user);
         }
     }
-    else
-        viewForm($user);
+    viewForm($user);
 }

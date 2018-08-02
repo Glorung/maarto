@@ -9,14 +9,14 @@ function    checkOperationDate($user, $date)
         strlen($date[2]) == 2 && ((int)$date[2] <= 31))
         return true;
     else
-        $user->_error = "Erreur: Date invalide.";
+        $user->_error = "Erreur: Date invalide: " . $date;
     return false;
 }
 
 function    checkName($user, $name)
 {
     $name = strlen($name);
-    if ($name > 3 && $name <= 50)
+    if ($name >= 3 && $name <= 50)
         return true;
     else
         $user->_error = "Erreur: Libellé de l'opération invalide.";
@@ -37,7 +37,7 @@ function    checkBalance($user, $balance)
     if (is_int($balance) || is_float($balance))
         return true;
     else
-        $user->_error = "Erreur: Montant invalide.";
+        $user->_error = "Erreur: Montant invalide: " . $balance;
     return false;
 }
 
@@ -52,7 +52,8 @@ function    checkRegular($user, $regular)
 
 function    checkAccount($user, $account)
 {
-    if ($account)
+    $user->selectAccount($account);
+    if ($user->_error == NULL)
         return true;
     else
         $user->_error = "Erreur: Compte en banque inexistant.";
@@ -61,8 +62,21 @@ function    checkAccount($user, $account)
 
 function    checkOperationCategory($user, $category)
 {
-    if ($category)
-        return true;
+    if ($user->_category != NULL)
+    {
+        $i = 0;
+        
+        while ($i < count($user->_category) &&
+                $user->_category[$i]['category_id'] != $category)
+            $i = $i + 1;
+        if ($user->_category[$i]['category_id'] == $category)
+            return true;
+        else
+        {
+            $user->_error = "Erreur: Catégorie non valide.";
+            return false;
+        }
+    }
     else
         $user->_error = "Erreur: Catégorie non valide.";
     return false;
